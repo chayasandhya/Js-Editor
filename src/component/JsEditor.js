@@ -23,3 +23,9 @@ export const JsEditor = () => {
     </div>
   );
 };
+
+/*
+TODo
+save file - change file name - delete - save again - NOT WORKING 
+re naming to already existing file name remove the current file - need to prevent it
+*/ 

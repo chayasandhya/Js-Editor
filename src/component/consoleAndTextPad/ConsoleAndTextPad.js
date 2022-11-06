@@ -39,7 +39,7 @@ export default function ConsoleAndTextPad(props) {
       <div>
         <div className="flexdiv">
           <div>{`Text Pad  `}</div>
-          {props.currFileData.fname}
+          {props.currFileData.fname ? `${props.currFileData.fname}.js` : ""}
           <div>
             <button onClick={onRunClick}>Run</button>
           </div>

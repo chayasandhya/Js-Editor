@@ -6,10 +6,6 @@ import "./FileSystem.css";
 export const FileSystem = (props) => {
   const [files, setFiles] = useState([]);
 
-  useEffect(() => {
-    setFiles(Object.keys(props.filesData));
-  }, [props.filesData]);
-
   const currentFileClick = (fname) => {
     let cpState = {
       fname: fname,
@@ -24,11 +20,12 @@ export const FileSystem = (props) => {
     let key = "untitled";
     //we loop until we find the key => we need to increment its count and check again
     //we don't find the key => add key
-    while (cpState[`${key}${count ? count : ""}.js`] != undefined) {
+    while (cpState[`${key}${count ? count : ""}`] != undefined) {
       count++;
     }
-    cpState[`${key}${count ? count : ""}.js`] = "";
+    cpState[`${key}${count ? count : ""}`] = "";
     props.setFilesData(cpState);
+    setFiles(Object.keys(cpState))
   };
 
   const deleteFile = (i) => {
@@ -38,9 +35,18 @@ export const FileSystem = (props) => {
     let cpState = { ...props.filesData };
     delete cpState[fileRemoved];
     props.setFilesData(cpState);
+    setFiles(Object.keys(cpState))
   };
 
-  const renameFile = (newFileName, indexOfFile) => {};
+  const renameFile = (newFileName, indexOfFile) => {
+    const oldKey = files[indexOfFile];
+    if(newFileName == oldKey) return;
+    const cpState = {...props.filesData}
+    cpState[newFileName]=cpState[oldKey];
+    delete cpState[oldKey];
+    props.setFilesData(cpState);
+    setFiles(Object.keys(cpState))
+  };
 
   return (
     <div className="filesContainer">

@@ -4,12 +4,18 @@ function File(props) {
   return (
     <div>
       <div className="fileComp">
-        <button
+        <div
+         contentEditable ={true}
           onClick={() => props.currentFileClick(props.eachFile)}
           className="filebtn"
+          onBlur={(e)=>{
+              let value = e.target.innerText;
+              value = value.split(".")[0];
+              props.renameFile(value, props.index);
+          }}
         >
-          {props.eachFile}
-        </button>
+          {props.eachFile}.js
+        </div>
         <button onClick={() => props.deleteFile(props.index)}>X</button>
       </div>
     </div>
