@@ -5,14 +5,12 @@ export default function ConsoleAndTextPad(props) {
   const inpRef = useRef(null);
   const [consoleData, setConsoleData] = useState();
 
- 
-
-  useEffect(()=>{
-    inpRef.current.value = ''
-    inpRef.current.value = props.currFileData.content? props.currFileData.content:''
-
-  },[props.currFileData])
-
+  useEffect(() => {
+    inpRef.current.value = "";
+    inpRef.current.value = props.currFileData.content
+      ? props.currFileData.content
+      : "";
+  }, [props.currFileData]);
 
   const onRunClick = () => {
     const inpText = inpRef.current.value;
@@ -28,45 +26,32 @@ export default function ConsoleAndTextPad(props) {
 
   const clear = () => {
     setConsoleData("");
- 
   };
 
-  const onSave = ()=>{
-    let cpState = [...props.filesData];
-    cpState.map((each)=>{
-      if(each.fname==props.currFileData.fname){
-        each.content = inpRef.current.value
-      }
-    })
+  const onSave = () => {
+    let cpState = { ...props.filesData };
+    cpState[props.currFileData.fname] = inpRef.current.value;
     props.setFilesData(cpState);
-  }
+  };
 
   return (
-    <div className="container" >
+    <div className="container">
       <div>
         <div className="flexdiv">
           <div>{`Text Pad  `}</div>
           {props.currFileData.fname}
           <div>
-           
             <button onClick={onRunClick}>Run</button>
           </div>
           <button onClick={onSave}>Save</button>
-
         </div>
-        <textarea
-          className="input"
-          id="textVal"
-          ref={inpRef}
-        />
-        
-        
+        <textarea className="input" id="textVal" ref={inpRef} />
       </div>
 
       <div className="console">
-        <div style={{display:"flex", justifyContent:'space-between'}}>
-        <div>{`Console >>`}</div>
-        <button onClick={clear}>Clear</button>
+        <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <div>{`Console >>`}</div>
+          <button onClick={clear}>Clear</button>
         </div>
         <div>{consoleData}</div>
       </div>

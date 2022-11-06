@@ -10,8 +10,15 @@
     padding-bottom: 0.59em;
 }
 
-.addedfile{
-    text-align: left;
+.fileList {
+    background-color: rgb(184, 184, 184);
+}
+
+.fileComp{
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+
 }
 
 .filebtn{
