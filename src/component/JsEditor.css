@@ -1,0 +1,7 @@
+.Maincontainer{
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid black;
+    height: 100vh;
+
+}

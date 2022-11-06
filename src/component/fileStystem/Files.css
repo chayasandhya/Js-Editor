@@ -1,0 +1,22 @@
+.filesContainer{
+    width: 20%;
+    margin-left: 5px;
+}
+
+.addfiles{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding-bottom: 0.59em;
+}
+
+.addedfile{
+    text-align: left;
+}
+
+.filebtn{
+    border: none;
+}
+.filebtn:hover{
+    cursor: pointer;
+}
